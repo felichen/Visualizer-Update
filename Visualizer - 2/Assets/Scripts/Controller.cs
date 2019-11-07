@@ -31,15 +31,19 @@ public class Controller : MonoBehaviour
     public Transform[] children;
     public string a = "AudioVisual";
     public string p = "Phyllotaxis";
+    KochLine[,] allkochlines;
+    Phyllotaxis[,] alltrails;
     // Start is called before the first frame update
     void Start()
     {
+        allkochlines = new KochLine[12,3];
+        alltrails = new Phyllotaxis[10, 6];
         //set audio for progress bar
         _audioSource = _audioAnalyzer._audioSource;
         audioLength = _audioSource.clip.length;
 
         //add center options
-        List<string> center_options = new List<string>() { "Circle", "Travel", "Bars", "Ball", "Koch" };
+        List<string> center_options = new List<string>() { "Circle", "Travel", "Bars", "Koch" };
         centerOptions.AddOptions(center_options);
         //add frequency options
         List<string> freq_options = new List<string>() { "Low", "Medium", "High" };
@@ -74,6 +78,30 @@ public class Controller : MonoBehaviour
         //    GameObject go = phyllotaxisball.transform.GetChild(i).gameObject;
         //    go.transform.parent = phyllotaxisball.transform;
         //}
+
+        //get sides of koch
+        for (int i = 0; i < 12; i++)
+        {
+            GameObject side = kochparent.transform.GetChild(i).gameObject;
+            for (int j = 0; j < 3; j++)
+            {
+                GameObject line = side.transform.GetChild(j).gameObject;
+                KochLine kochline = line.GetComponent<KochLine>();
+                allkochlines[i, j] = kochline;
+            }
+        }
+
+        //get phyllotaxis ball
+        for (int i = 5; i < 10; i++)
+        {
+            GameObject side = ballParent.transform.GetChild(i).gameObject;
+            for (int j = 0; j < 6; j++)
+            {
+                GameObject t = side.transform.GetChild(j).gameObject;
+                Phyllotaxis trail = t.GetComponent<Phyllotaxis>();
+                alltrails[i, j] = trail;
+            }
+        }
     }
 
     public void centerOption_changed(int index)
@@ -144,7 +172,7 @@ public class Controller : MonoBehaviour
             ballParent.SetActive(false);
             kochparent.SetActive(false);
         }
-        else if (index == 3)
+        else if (index == 4)
         {
             barParent.SetActive(false);
             phylloParent.SetActive(false);
@@ -152,7 +180,7 @@ public class Controller : MonoBehaviour
             ballParent.SetActive(true);
             kochparent.SetActive(false);
         }
-        else if (index == 4)
+        else if (index == 3)
         {
             barParent.SetActive(false);
             phylloParent.SetActive(false);
@@ -180,16 +208,106 @@ public class Controller : MonoBehaviour
         {
             _audioVisual.keep = 0.1f;
             _barsCenter.start = 0;
+
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        if (j == 0) {
+                            allkochlines[i, j]._audioBand[k] = 0;
+                        }
+                        if (j == 1)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 2;
+                        }
+                        if (j == 2)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 5;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 5; i < 10; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    alltrails[i, j]._scaleBand = 1;
+                }
+            }
         }
         else if (index == 1) //bass
         {
             _audioVisual.keep = 0.3f;
             _barsCenter.start = 16;
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        if (j == 0)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 10;
+                        }
+                        if (j == 1)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 20;
+                        }
+                        if (j == 2)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 30;
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 5; i < 10; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    alltrails[i, j]._scaleBand = 4;
+                }
+            }
         }
         else if (index == 2) //upper bass
         {
             _audioVisual.keep = 0.5f;
             _barsCenter.start = 32;
+
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        if (j == 0)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 30;
+                        }
+                        if (j == 1)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 45;
+                        }
+                        if (j == 2)
+                        {
+                            allkochlines[i, j]._audioBand[k] = 60;
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 5; i < 10; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    alltrails[i, j]._scaleBand = 7;
+                }
+            }
         }
         //else if (index == 3) //midrange
         //{

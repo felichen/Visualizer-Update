@@ -41,13 +41,13 @@ public class KochLine : KochGenerator
     // Update is called once per frame
     void Update()
     {
-        _matInstance.SetColor("_EmissionColor", _color * _audioAnalyzer._audioBandBuffer[_audioBandMaterial] * _emissionMultiplier);
+        _matInstance.SetColor("_EmissionColor", _color * _audioAnalyzer._audioBandBuffer64[_audioBandMaterial] * _emissionMultiplier);
         if (_generationCount != 0)
         {
             int count = 0;
             for (int i = 0; i < _initiatorPointAmount; i++)
             {
-                _lerpAudio[i] = _audioAnalyzer._audioBandBuffer[_audioBand[i]];
+                _lerpAudio[i] = _audioAnalyzer._audioBandBuffer64[_audioBand[i]];
                 for (int j = 0; j < (_position.Length - 1) / _initiatorPointAmount; j++)
                 {
                     _lerpPosition[count] = Vector3.Lerp(_position[count], _targetPosition[count], _lerpAudio[i]);

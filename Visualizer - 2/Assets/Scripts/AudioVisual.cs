@@ -122,8 +122,9 @@ public class AudioVisual : MonoBehaviour
         ParticleSystemShapeType sphere = ParticleSystemShapeType.Sphere;
         spshape.shapeType = sphere;
         var spmain = pcenter.main;
-        spmain.maxParticles = 50;
-        spmain.startSize = particleSize;
+        spmain.maxParticles = 100;
+        spmain.startSpeed = 30;
+        spmain.startSize = particleSize * 5;
         spmain.startColor = colone;
         pcenter.enableEmission = false;
         centerEmitterTrans[0] = pcenter.transform;
@@ -278,10 +279,6 @@ public class AudioVisual : MonoBehaviour
                 {
                     emitParticles(index);
                 }
-                if (phyllotaxisball.activeSelf == true)
-                {
-                    emitCenterParticles();
-                }
 
             }
             //if at max size, snap up
@@ -291,7 +288,10 @@ public class AudioVisual : MonoBehaviour
                 if (index >= 5 && index <= 8)
                 {
                     changeColor(); //****************************************************************************************************************************************
-             
+                    if (phyllotaxisball.activeSelf == true && (index >= 6 && index <= 7))
+                    {
+                        emitCenterParticles();
+                    }
                 }
                 scaleFactor[index] = maxScale;
             }
