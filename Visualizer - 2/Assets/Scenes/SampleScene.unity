@@ -825,7 +825,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.8
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -1447,7 +1447,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.8
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -3273,7 +3273,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -4093,7 +4093,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.8
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -4739,7 +4739,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.8
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -5396,7 +5396,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -5519,6 +5519,7 @@ GameObject:
   - component: {fileID: 329940243}
   - component: {fileID: 329940242}
   - component: {fileID: 329940241}
+  - component: {fileID: 329940244}
   m_Layer: 0
   m_Name: AudioAnalyzer
   m_TagString: Untagged
@@ -5547,6 +5548,8 @@ MonoBehaviour:
   clip7: {fileID: 8300000, guid: 2e09a9d9aa71eaf49aa1c8ada82d62ff, type: 3}
   clip8: {fileID: 8300000, guid: 4f40673f039f94a4fb10a7f4b2665d77, type: 3}
   clip9: {fileID: 8300000, guid: 239dbae74ddaac0459c631f8ec8df498, type: 3}
+  audioVisual: {fileID: 704228021}
+  _barsCenter: {fileID: 1161864291}
   musicList: []
   _audioSource: {fileID: 0}
   _samplesLeft:
@@ -7804,6 +7807,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &329940244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329940240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f7309513c922e4b983fb8230da13e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &335304036
 GameObject:
   m_ObjectHideFlags: 0
@@ -8457,7 +8472,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -8870,7 +8885,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -9088,7 +9103,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -9340,7 +9355,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -9635,7 +9650,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -10535,7 +10550,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -10755,7 +10770,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -11335,7 +11350,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -12067,7 +12082,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -12285,7 +12300,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -13004,7 +13019,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -13224,7 +13239,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -13465,6 +13480,8 @@ MonoBehaviour:
   CameraControl: {fileID: 1969505467}
   _phyllotaxis: {fileID: 1055888036}
   phyllotaxisball: {fileID: 814332169}
+  sliderFill: {fileID: 0}
+  controller: {fileID: 1548116184}
   matRef: {fileID: 2100000, guid: a795bf36b792680418204d80f1bb51f4, type: 2}
   particleMat: {fileID: 2100000, guid: af019d06d4a302e4393eb2fb7cc91591, type: 2}
   emphasisEmitter: {fileID: 0}
@@ -13604,8 +13621,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5435787e+30, y: 1.3958761e+10, z: 8.0937406e+11,
-    w: 6.7406024e+22}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -15183,7 +15199,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.8
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -15801,7 +15817,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -22937,7 +22953,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -23547,7 +23563,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -23765,7 +23781,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -24739,7 +24755,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -25016,7 +25032,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -25307,7 +25323,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -28845,7 +28861,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -29352,7 +29368,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -29770,7 +29786,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -31815,7 +31831,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -32033,7 +32049,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -32253,7 +32269,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -32500,7 +32516,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -33302,7 +33318,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -33727,7 +33743,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -34161,7 +34177,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0
@@ -35381,7 +35397,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -40878,7 +40894,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -41951,7 +41967,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   - outwards: 1
@@ -42677,7 +42693,7 @@ MonoBehaviour:
   bc: {fileID: 1161864289}
   _audioAnalyzer: {fileID: 329940241}
   _rotateAxis: {x: 1, y: 1, z: 1}
-  _rotateSpeed: {x: 8, y: 12, z: 10}
+  _rotateSpeed: {x: 10, y: 12, z: 10}
 --- !u!4 &1969505469
 Transform:
   m_ObjectHideFlags: 0
@@ -42961,7 +42977,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   _useBezierCurves: 0
   _bezierVertexCount: 8
   _initiatorSize: 30
@@ -50456,7 +50472,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _startGen:
   - outwards: 0
-    scale: 1.5
+    scale: 1.6
   - outwards: 1
     scale: 2
   _useBezierCurves: 0

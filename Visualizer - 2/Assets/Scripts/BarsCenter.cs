@@ -60,7 +60,7 @@ public class BarsCenter : MonoBehaviour
             _instanceSampleCube.GetComponent<Renderer>().material.color = newcol;
             _instanceSampleCube.name = "SampleCube" + i;
 
-            _instanceSampleCube.transform.position = new Vector3(i - 33, 0, 0);
+            _instanceSampleCube.transform.position = new Vector3(i - 34, 0, 0);
             _cubesLeft[i] = _instanceSampleCube;
 
             ////create emitter that comes out of bars in center visual up
@@ -125,7 +125,7 @@ public class BarsCenter : MonoBehaviour
             _instanceSampleCube.GetComponent<Renderer>().material.color = newcol;
             _instanceSampleCube.name = "SampleCube" + i;
 
-            _instanceSampleCube.transform.position = new Vector3(i + 2, 0, 0);
+            _instanceSampleCube.transform.position = new Vector3(i + 3, 0, 0);
             _cubesRight[i] = _instanceSampleCube;
 
 

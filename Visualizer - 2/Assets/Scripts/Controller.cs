@@ -32,8 +32,8 @@ public class Controller : MonoBehaviour
     public Transform[] children;
     public string a = "AudioVisual";
     public string p = "Phyllotaxis";
-    KochLine[,] allkochlines;
-    Phyllotaxis[,] alltrails;
+    public KochLine[,] allkochlines;
+    public Phyllotaxis[,] alltrails;
     // Start is called before the first frame update
     void Start()
     {
@@ -94,14 +94,22 @@ public class Controller : MonoBehaviour
         }
 
         //get phyllotaxis ball
-        for (int i = 5; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject side = ballParent.transform.GetChild(i).gameObject;
-            for (int j = 0; j < 6; j++)
+            if (i < 5)
             {
-                GameObject t = side.transform.GetChild(j).gameObject;
+                GameObject t = side.transform.GetChild(0).gameObject;
                 Phyllotaxis trail = t.GetComponent<Phyllotaxis>();
-                alltrails[i, j] = trail;
+                alltrails[i, 0] = trail;
+            } else
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    GameObject t = side.transform.GetChild(j).gameObject;
+                    Phyllotaxis trail = t.GetComponent<Phyllotaxis>();
+                    alltrails[i, j] = trail;
+                }
             }
         }
     }

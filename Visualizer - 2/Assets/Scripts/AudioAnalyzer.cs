@@ -17,6 +17,10 @@ public class AudioAnalyzer : MonoBehaviour
     public AudioClip clip8;
     public AudioClip clip9;
 
+
+    public AudioVisual audioVisual;
+    public BarsCenter _barsCenter;
+
     public List<AudioClip> musicList;
     public AudioSource _audioSource;
     public float[] _samplesLeft = new float[1024];
@@ -58,18 +62,9 @@ public class AudioAnalyzer : MonoBehaviour
     public _channel channel = new _channel();
 
 
-    //private void Awake()
-    //{
-    //    //CALCULATE BPMS OF ALL SONGS BEFOREHAND
-    //    populateList();
-    //    for (int i = 0; i < musicList.Count; i++)
-    //    {
-    //        songBPMs.Add(musicList[i].name, BPMAnalyzer.AnalyzeBpm(musicList[i]));
-    //    }
-    //}
-    // Start is called before the first frame update
     void Start()
     {
+        songBPMs = new Dictionary<string, int>();
         startSetup();
 
     }
@@ -98,8 +93,11 @@ public class AudioAnalyzer : MonoBehaviour
         _audioSource.clip = c;
         _audioSource.Play(0);
 
-        //int bpm = BPMAnalyzer.AnalyzeBpm(c);
-        //Debug.Log(string.Format("what is bpm: {0}", bpm));
+
+        audioVisual.bpm = BPMAnalyzer.AnalyzeBpm(c);
+        audioVisual.setColorsBeat();
+        audioVisual.setColors();
+        _barsCenter.setColors();
     }
 
     public void populateList()

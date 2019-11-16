@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 
 //MAPPINGS
@@ -10,6 +11,10 @@ public class AudioVisual : MonoBehaviour
     public GameObject CameraControl;
     public Phyllotaxis _phyllotaxis;
     public GameObject phyllotaxisball;
+
+    public Image sliderFill;
+    public Controller controller;
+
     public Material matRef;
     public Material particleMat;
     ParticleSystem particles;
@@ -88,7 +93,6 @@ public class AudioVisual : MonoBehaviour
         //CREATE PARENT
         circleParent = this.transform.GetChild(0).gameObject;
 
-        Debug.Log("r!!: " + colone.r + "g: " + colone.g + " b: " + colone.b);
 
         cameraTransform = GameObject.Find("Main Camera").transform;
 
@@ -98,7 +102,7 @@ public class AudioVisual : MonoBehaviour
 
         //bpm = BPMAnalyzer.AnalyzeBpm(source.clip);
         //Debug.Log(string.Format("what is bpm: {0}", bpm));
-
+        sliderFill = controller.progressbar.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
 
         //set color palettes
         purple = new Color[2];
@@ -119,38 +123,26 @@ public class AudioVisual : MonoBehaviour
         red[0] = new Color(202f / 255f, 48f / 255f, 94f / 255f, 1f); //dark purple
         red[1] = new Color(173f / 255f, 88f / 255f, 209f / 255f, 1f); //dark green blue
 
-        pink[0] = new Color(1f, 73f / 255f, 250 / 255f, 1f); //dark purple
-        pink[1] = new Color(73 / 255f, 1f, 250 / 255f, 1f); //dark green blue
+        pink[0] = new Color(1f, 73f / 255f, 255 / 255f, 1f); //dark purple
+        pink[1] = new Color(73 / 255f, 1f, 255 / 255f, 1f); //dark green blue
 
+
+        if (_audioAnalyzer.songBPMs.TryGetValue(source.clip.name, out bpm))
+        {
+            //success
+        }
+        else
+        {
+            bpm = BPMAnalyzer.AnalyzeBpm(source.clip);
+            _audioAnalyzer.songBPMs.Add(source.clip.name, bpm);
+        }
         //_audioAnalyzer.songBPMs.TryGetValue(source.clip.name, out bpm);
+        Debug.Log("BPM: " + bpm);
 
-        //if (bpm <= 100)
-        //{
-        //    colone = purple[0];
-        //    coltwo = purple[1];
-        //} else if (bpm <= 150)
-        //{
-        //    colone = blue[0];
-        //    coltwo = blue[1];
-        //}
-        //else if (bpm <= 190)
-        //{
-        //    colone = green[0];
-        //    coltwo = green[1];
-        //}
-        //else if (bpm <= 225)
-        //{
-        //    colone = red[0];
-        //    coltwo = red[1];
-        //}
-        //else 
-        //{
-        //    colone = pink[0];
-        //    coltwo = pink[1];
-        //}
-
-        colone = pink[0];
-        coltwo = pink[1];
+        setColorsBeat();
+        sliderFill.color = colone;
+        //colone = pink[0];
+        //coltwo = pink[1];
         InstantiateCircle(); //creates circle at center of screen
         InstantiateRMSDBCube();
         //InstantiateFlying();
@@ -180,6 +172,8 @@ public class AudioVisual : MonoBehaviour
         ParticleSystemShapeType sphere = ParticleSystemShapeType.Sphere;
         spshape.shapeType = sphere;
         var spmain = pcenter.main;
+        //centergo.GetComponent<ParticleSystemRenderer>().renderMode = ParticleSystemRenderMode.Stretch;
+        //centergo.GetComponent<ParticleSystemRenderer>().lengthScale = 10;
         spmain.maxParticles = 100;
         spmain.startSpeed = 30;
         spmain.startSize = particleSize * 5;
@@ -234,14 +228,6 @@ public class AudioVisual : MonoBehaviour
         }
     }
 
-    public Color lerp(float value)
-    {
-        //return new Color(colone.r * value + coltwo.r * (1 - value),
-        //            colone.g * value + coltwo.g * (1 - value),
-        //            colone.b * value + coltwo.b * (1 - value));
-        return Color.Lerp(colone, coltwo, value);
-    }
-
     void InstantiateRMSDBCube()
     {
         rmsTransform = new Transform[1];
@@ -265,8 +251,11 @@ public class AudioVisual : MonoBehaviour
         GameObject beatgo = GameObject.CreatePrimitive(PrimitiveType.Sphere) as GameObject;
         beatgo.GetComponent<Renderer>().receiveShadows = false;
         beatgo.GetComponent<Renderer>().material = matRef;
+        float val = Random.Range(0.0f, 1.0f);
+        beatgo.GetComponent<Renderer>().material.color = lerp(val);
         beatgo.transform.localScale = new Vector3(2, 2, 2);
         beatTransform[0] = beatgo.transform;
+
 
         colorCubes[0] = beatgo;
     }
@@ -384,7 +373,37 @@ public class AudioVisual : MonoBehaviour
             var p = ps.main;
             p.startColor = newcol;
         }
+        changeColor();
 
+    }
+
+    public void setColorsBeat()
+    {
+        if (bpm <= 150)
+        {
+            colone = purple[0];
+            coltwo = purple[1];
+        }
+        else if (bpm <= 180)
+        {
+            colone = blue[0];
+            coltwo = blue[1];
+        }
+        else if (bpm <= 200)
+        {
+            colone = green[0];
+            coltwo = green[1];
+        }
+        else if (bpm <= 220)
+        {
+            colone = red[0];
+            coltwo = red[1];
+        }
+        else
+        {
+            colone = pink[0];
+            coltwo = pink[1];
+        }
     }
 
     void emitParticles(int i)
@@ -407,9 +426,59 @@ public class AudioVisual : MonoBehaviour
     {
         //psRenderer.material.color = UnityEngine.Random.ColorHSV();
         float val = Random.Range(0.0f, 1.0f);
-        colorCubes[0].GetComponent<Renderer>().material.color = lerp(val);
-        _phyllotaxis._trailcolor = lerp(val);
+        Color newCol = lerp(val);
+        colorCubes[0].GetComponent<Renderer>().material.color = newCol;
+        _phyllotaxis._trailcolor = newCol;
+        for (int i = 0; i < 10; i++)
+        {
+            if (i < 5)
+            {
+                controller.alltrails[i, 0]._trailcolor = colone;
+            }
+            else
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    controller.alltrails[i, j]._trailcolor = coltwo;
+                }
+            }
+        }
+        for (int i = 0; i < 12; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int k = 0; k < 5; k++)
+                {
+                    if (j == 0)
+                    {
+                        controller.allkochlines[i, j]._color = colone;
+                    }
+                    if (j == 1)
+                    {
+                        controller.allkochlines[i, j]._color = lerp(0.5f);
+                    }
+                    if (j == 2)
+                    {
+                        controller.allkochlines[i, j]._color = coltwo;
+                    }
+                }
+            }
+        }
+        ParticleSystem pcenter= centerEmitterTrans[0].gameObject.GetComponent<ParticleSystem>();
+        var spmain = pcenter.main;
+        spmain.startColor = colone;
 
+        //slider
+        sliderFill.color = colone;
+
+    }
+
+    public Color lerp(float value)
+    {
+        //return new Color(colone.r * value + coltwo.r * (1 - value),
+        //            colone.g * value + coltwo.g * (1 - value),
+        //            colone.b * value + coltwo.b * (1 - value));
+        return Color.Lerp(colone, coltwo, value);
     }
 
     void UpdateRMS()
