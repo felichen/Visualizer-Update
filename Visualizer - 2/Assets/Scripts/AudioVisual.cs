@@ -30,6 +30,11 @@ public class AudioVisual : MonoBehaviour
 
     //COLOR PALETTES
     //purple
+    Color[] purple;
+    Color[] blue;
+    Color[] green;
+    Color[] red;
+    Color[] pink;
 
 
     //BEAT DETECTION
@@ -83,8 +88,7 @@ public class AudioVisual : MonoBehaviour
         //CREATE PARENT
         circleParent = this.transform.GetChild(0).gameObject;
 
-        colone = new Color(1f, 73f / 255f, 250 / 255f);
-        coltwo = new Color(73 / 255f, 1f, 250 / 255f);
+        Debug.Log("r!!: " + colone.r + "g: " + colone.g + " b: " + colone.b);
 
         cameraTransform = GameObject.Find("Main Camera").transform;
 
@@ -92,10 +96,64 @@ public class AudioVisual : MonoBehaviour
         //spectrum = new float[SAMPLE_SIZE];
 
 
+        //bpm = BPMAnalyzer.AnalyzeBpm(source.clip);
+        //Debug.Log(string.Format("what is bpm: {0}", bpm));
+
+
+        //set color palettes
+        purple = new Color[2];
+        blue = new Color[2];
+        green = new Color[2];
+        red = new Color[2];
+        pink = new Color[2];
+
+        purple[0] = new Color(78f/255f, 4f/255f, 144f/255f, 1f); //dark purple
+        purple[1] = new Color(9f/255f, 142f/255f, 199f/255f,1f); //dark green blue
+
+        blue[0] = new Color(19f / 255f, 24f / 255f, 178f / 255f, 1f); //dark blue
+        blue[1] = new Color(19f / 255f, 178f / 255f, 172f / 255f, 1f); //green
+
+        green[0] = new Color(16f / 255f, 174f / 255f, 144 / 168f, 1f); //mid bluegreen
+        green[1] = new Color(131 / 255f, 212f / 255f, 125 / 255f, 1f); //light green
+
+        red[0] = new Color(202f / 255f, 48f / 255f, 94f / 255f, 1f); //dark purple
+        red[1] = new Color(173f / 255f, 88f / 255f, 209f / 255f, 1f); //dark green blue
+
+        pink[0] = new Color(1f, 73f / 255f, 250 / 255f, 1f); //dark purple
+        pink[1] = new Color(73 / 255f, 1f, 250 / 255f, 1f); //dark green blue
+
+        //_audioAnalyzer.songBPMs.TryGetValue(source.clip.name, out bpm);
+
+        //if (bpm <= 100)
+        //{
+        //    colone = purple[0];
+        //    coltwo = purple[1];
+        //} else if (bpm <= 150)
+        //{
+        //    colone = blue[0];
+        //    coltwo = blue[1];
+        //}
+        //else if (bpm <= 190)
+        //{
+        //    colone = green[0];
+        //    coltwo = green[1];
+        //}
+        //else if (bpm <= 225)
+        //{
+        //    colone = red[0];
+        //    coltwo = red[1];
+        //}
+        //else 
+        //{
+        //    colone = pink[0];
+        //    coltwo = pink[1];
+        //}
+
+        colone = pink[0];
+        coltwo = pink[1];
         InstantiateCircle(); //creates circle at center of screen
         InstantiateRMSDBCube();
         //InstantiateFlying();
-
     }
 
     void InstantiateCircle()
@@ -245,6 +303,20 @@ public class AudioVisual : MonoBehaviour
 
         float scale = _audioAnalyzer._AmplitudeBuffer * _scaleMultiplier + _startScale;
         colorCubes[0].transform.localScale = new Vector3(scale, scale, scale);
+
+        //Debug.Log("original r: " + colone.r + "g: " + colone.g + " b: " + colone.b);
+        ////update color saturation
+        //float H, S, V;
+        //Color.RGBToHSV(colone, out H, out S, out V);
+        //Debug.Log("hsv H: " + H + "S: " + S + " V: " + V);
+        //colone = Color.HSVToRGB(H, S, Mathf.Clamp(_audioAnalyzer._AmplitudeBuffer, 0f, 1f));
+
+        //Debug.Log("new r: " + colone.r + "g: " + colone.g + " b: " + colone.b);
+
+        //setColors();
+
+        //Color.RGBToHSV(new Color(coltwo.r, coltwo.g, coltwo.b), out H, out S, out V);
+        //coltwo = Color.HSVToRGB(H, _audioAnalyzer._AmplitudeBuffer, V);
     }
 
     void UpdateVisual() //modify scale of objects

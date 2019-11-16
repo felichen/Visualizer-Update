@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour
 {
     public Slider progressbar;
     public AudioAnalyzer _audioAnalyzer;
+    public Image playlist;
     public Canvas fcp1;
     public Canvas fcp2;
     public Canvas menuItems;
@@ -43,7 +44,7 @@ public class Controller : MonoBehaviour
         audioLength = _audioSource.clip.length;
 
         //add center options
-        List<string> center_options = new List<string>() { "Circle", "Travel", "Bars", "Koch" };
+        List<string> center_options = new List<string>() { "Circle", "Travel", "Bars", "Koch", "Ball" };
         centerOptions.AddOptions(center_options);
         //add frequency options
         List<string> freq_options = new List<string>() { "Low", "Medium", "High" };
@@ -72,6 +73,7 @@ public class Controller : MonoBehaviour
         fcp1.gameObject.SetActive(false);
         fcp2.gameObject.SetActive(false);
         menuItems.gameObject.SetActive(false);
+        playlist.gameObject.SetActive(false);
 
         //for (int i = 0; i < phyllotaxisball.transform.childCount; i++)
         //{
@@ -374,6 +376,18 @@ public class Controller : MonoBehaviour
             menuItems.gameObject.SetActive(false);
         }
        
+    }
+
+    public void onPlaylistClick()
+    {
+        if (playlist.gameObject.activeSelf == false)
+        {
+            playlist.gameObject.SetActive(true);
+        }
+        else
+        {
+            playlist.gameObject.SetActive(false);
+        }
     }
 
 }

@@ -7,9 +7,21 @@ public class AudioAnalyzer : MonoBehaviour
 {
 
     //8 OR 64; THE FREQUENCY BANDS REPRESENTS SPECIFIC SUBSET OF FREQUENCIES, LIKE BASS, SUB-BASS, ETC
+    public AudioClip clip1;
+    public AudioClip clip2;
+    public AudioClip clip3;
+    public AudioClip clip4;
+    public AudioClip clip5;
+    public AudioClip clip6;
+    public AudioClip clip7;
+    public AudioClip clip8;
+    public AudioClip clip9;
+
+    public List<AudioClip> musicList;
     public AudioSource _audioSource;
     public float[] _samplesLeft = new float[1024];
     public float[] _samplesRight = new float[1024];
+    public Dictionary<string, int> songBPMs;
 
 
     public float RMS; //avg output of sound
@@ -37,7 +49,7 @@ public class AudioAnalyzer : MonoBehaviour
     [HideInInspector]
     public float[] _audioBand64, _audioBandBuffer64;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float _Amplitude, _AmplitudeBuffer;
     private float _AmplitudeHighest;
     public float _audioProfile = 5;
@@ -45,8 +57,24 @@ public class AudioAnalyzer : MonoBehaviour
     public enum _channel {Stereo, Left, Right}
     public _channel channel = new _channel();
 
+
+    //private void Awake()
+    //{
+    //    //CALCULATE BPMS OF ALL SONGS BEFOREHAND
+    //    populateList();
+    //    for (int i = 0; i < musicList.Count; i++)
+    //    {
+    //        songBPMs.Add(musicList[i].name, BPMAnalyzer.AnalyzeBpm(musicList[i]));
+    //    }
+    //}
     // Start is called before the first frame update
     void Start()
+    {
+        startSetup();
+
+    }
+
+    public void startSetup()
     {
         GameObject.Find("Main Camera").transform.position = new Vector3(0, 0, -65);
         GameObject ps = GameObject.Find("Particle System");
@@ -65,7 +93,29 @@ public class AudioAnalyzer : MonoBehaviour
         spectrum = new float[SAMPLE_SIZE];
         sampleRate = AudioSettings.outputSampleRate;
     }
+    public void setAudioClip(AudioClip c)
+    {
+        _audioSource.clip = c;
+        _audioSource.Play(0);
 
+        //int bpm = BPMAnalyzer.AnalyzeBpm(c);
+        //Debug.Log(string.Format("what is bpm: {0}", bpm));
+    }
+
+    public void populateList()
+    {
+        //populate music list
+        musicList = new List<AudioClip>();
+        musicList.Add(clip1);
+        musicList.Add(clip2);
+        musicList.Add(clip3);
+        musicList.Add(clip4);
+        musicList.Add(clip5);
+        musicList.Add(clip6);
+        musicList.Add(clip7);
+        musicList.Add(clip8);
+        musicList.Add(clip9);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -226,7 +276,6 @@ public class AudioAnalyzer : MonoBehaviour
          * 7 - 512
          */
 
-        Debug.Log(string.Format("arraylength: {0}", _samplesLeft.Length));
         int count = 0;
         for (int i = 0; i < 8; i++)
         {

@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class KochLine : KochGenerator
 {
-    LineRenderer _lineRenderer;
+    LineRenderer lineRenderer;
     //[Range(0,1)]
     //public float _lerpAmount;
-    Vector3[] _lerpPosition;
-    public float _generateMultiplier;
-    private float[] _lerpAudio;
+    Vector3[] lerpPosition;
+    public float multiplier;
+    private float[] lerpAudio;
 
     [Header("Audio")]
     public AudioAnalyzer _audioAnalyzer;
@@ -24,18 +24,18 @@ public class KochLine : KochGenerator
     // Start is called before the first frame update
     void Start()
     {
-        _lerpAudio = new float[_initiatorPointAmount];
-        _lineRenderer = GetComponent<LineRenderer>();
-        _lineRenderer.enabled = true;
-        _lineRenderer.useWorldSpace = false;
-        _lineRenderer.loop = true;
-        _lineRenderer.positionCount = _position.Length;
-        _lineRenderer.SetPositions(_position);
-        _lerpPosition = new Vector3[_position.Length];
+        lerpAudio = new float[_initiatorPointAmount];
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = true;
+        lineRenderer.useWorldSpace = false;
+        lineRenderer.loop = true;
+        lineRenderer.positionCount = _position.Length;
+        lineRenderer.SetPositions(_position);
+        lerpPosition = new Vector3[_position.Length];
 
         //apply material
         _matInstance = new Material(_material);
-        _lineRenderer.material = _matInstance;
+        lineRenderer.material = _matInstance;
     }
 
     // Update is called once per frame
@@ -47,24 +47,24 @@ public class KochLine : KochGenerator
             int count = 0;
             for (int i = 0; i < _initiatorPointAmount; i++)
             {
-                _lerpAudio[i] = _audioAnalyzer._audioBandBuffer64[_audioBand[i]];
+                lerpAudio[i] = _audioAnalyzer._audioBandBuffer64[_audioBand[i]];
                 for (int j = 0; j < (_position.Length - 1) / _initiatorPointAmount; j++)
                 {
-                    _lerpPosition[count] = Vector3.Lerp(_position[count], _targetPosition[count], _lerpAudio[i]);
+                    lerpPosition[count] = Vector3.Lerp(_position[count], _targetPosition[count], lerpAudio[i]);
                     count++;
                 }
             }
-            _lerpPosition[count] = Vector3.Lerp(_position[count], _targetPosition[count], _lerpAudio[_initiatorPointAmount - 1]);
+            lerpPosition[count] = Vector3.Lerp(_position[count], _targetPosition[count], lerpAudio[_initiatorPointAmount - 1]);
 
             if (_useBezierCurves)
             {
-                _bezierPosition = BezierCurve(_lerpPosition, _bezierVertexCount);
-                _lineRenderer.positionCount = _bezierPosition.Length;
-                _lineRenderer.SetPositions(_bezierPosition);
+                _bezierPosition = BezierCurve(lerpPosition, _bezierVertexCount);
+                lineRenderer.positionCount = _bezierPosition.Length;
+                lineRenderer.SetPositions(_bezierPosition);
             } else
             {
-                _lineRenderer.positionCount = _lerpPosition.Length;
-                _lineRenderer.SetPositions(_lerpPosition);
+                lineRenderer.positionCount = lerpPosition.Length;
+                lineRenderer.SetPositions(lerpPosition);
             }
         }
     }
